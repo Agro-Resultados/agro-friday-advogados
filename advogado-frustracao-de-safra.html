@@ -197,7 +197,7 @@ footer img{height:30px;display:block;margin-bottom:12px}
   // Número de WhatsApp da Agro Resultados (somente dígitos, com DDI)
   var WHATS='5545991572021';
   // Endpoint para registrar o lead na Central de Leads (a conectar). Enquanto vazio, só abre o WhatsApp.
-  var LEAD_ENDPOINT='';
+  var LEAD_ENDPOINT='https://script.google.com/macros/s/AKfycbxyuaqmhuZsho1OIjMncp521T67TrSqPhqGvAWeP8G2LlWKoT-tpcpK01rPRoZRnHoqKA/exec';
 
   var f=document.getElementById('f'),msg=document.getElementById('msg');
   f.addEventListener('submit',function(e){
@@ -212,7 +212,7 @@ footer img{height:30px;display:block;margin-bottom:12px}
     var p=new URLSearchParams(location.search);
     var data={nome:nome,email:email,whatsapp:whats,uf:uf,origem:'Agro Friday - Advogados - Frustração de safra',pagina:location.href,
       utm_source:p.get('utm_source')||'',utm_medium:p.get('utm_medium')||'',utm_campaign:p.get('utm_campaign')||'',utm_content:p.get('utm_content')||''};
-    if(LEAD_ENDPOINT){try{fetch(LEAD_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data),keepalive:true})}catch(x){}}
+    if(LEAD_ENDPOINT){try{fetch(LEAD_ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(data),keepalive:true})}catch(x){}}
     if(window.dataLayer){window.dataLayer.push({event:'generate_lead',lead_source:'agro_friday_advogado-frustracao-de-safra',uf:uf})}
     var texto='Origem: Agro Friday - Advogados - Frustração de safra (site)\nNome: '+nome+'\nE-mail: '+email+'\nWhatsApp: '+whats+'\nEstado: '+uf+
       (data.utm_campaign?'\nCampanha: '+data.utm_campaign:'')+'\n\nQuero garantir minha vaga na Agro Friday.';
